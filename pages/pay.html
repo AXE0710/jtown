@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Registration Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/global.css?v=2">
+
+    <link rel="icon" type="image/x-icon" href="/src/favicon.ico">
+    <style>
+        body {
+           
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .class-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+        .class-button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .class-button.selected {
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .class-button:hover {
+            background-color: #b0b0b0;
+        }
+        .class-button.selected:hover {
+            background-color: #4caf50;
+        }
+        .fees {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input[type="text"], input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+        .or-text {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .payment-note {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .discount-note {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #666;
+        }
+        .total-amount {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/src/qrcode.jpg" alt="Logo" style="display: block; margin: 0 auto 20px; max-width: 100%;">
+        <div class="payment-note">Note: Pay on Given Qr code and send screenshot on given number</div>
+        <div class="total-amount" id="totalAmount"></div>
+    </div>
+    <script>
+        // Get the amount from the URL query parameters
+        var urlParams = new URLSearchParams(window.location.search);
+        var amount = urlParams.get('amount');
+
+        // Display the amount on the page
+        var totalAmountElement = document.getElementById('totalAmount');
+        if (amount !== null) {
+            totalAmountElement.textContent = 'Total Amount: ' + amount;
+        } else {
+            totalAmountElement.textContent = 'Total Amount: N/A';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Registration Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/global.css?v=2">
+
+    <link rel="icon" type="image/x-icon" href="/src/favicon.ico">
+    <style>
+        body {
+           
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .class-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+        .class-button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .class-button.selected {
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .class-button:hover {
+            background-color: #b0b0b0;
+        }
+        .class-button.selected:hover {
+            background-color: #4caf50;
+        }
+        .fees {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, input[type="text"], input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+        .or-text {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        .payment-note {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .discount-note {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #666;
+        }
+        .total-amount {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .timing-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .timing-option {
+        display: flex;
+        margin-bottom: 5px;
+
+    }
+
+    label {
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/src/logo.png" alt="Logo" style="display: block; margin: 0 auto 20px; max-width: 100%;">
+        <h2 style="text-align: center; margin-bottom: 20px;">Summer Camp Carnival</h2>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" placeholder="Enter your phone number">
+        <H3>Select Classes:</H3>
+        <div class="payment-note" style="font-weight: bold;">Note: <br> 20% off for those who joined 4 camps <br> 15% off for those who joined 3 camps <br> 10% off for those who joined 2 camps </div>
+        <div class="discount-note" id="discountNote"></div>
+        <div class="class-buttons" id="classButtons">
+            <button class="class-button" data-class="class1">Dance Classes 15 May - 5 June</button>
+            <button class="class-button" data-class="class2">Fitness Classes 25 May - 15 June</button>
+            <button class="class-button" data-class="class3">Fine-Arts Classes 25 May - 15 June</button>
+            <button class="class-button" data-class="class3">Music Classes 25 May - 15 June</button>
+        </div>
+        <label>Select Timing:</label>
+        <div id="timingButtons">
+            <div class="timing-group">
+                <p>Dance Classes:</p>
+                <div class="timing-option">
+                    <input type="checkbox" id="dance-8am-9am" name="timing" value="8am-9am">
+                    <label for="dance-8am-9am">8:00 AM - 9:00 AM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="fitness-7pm-8pm" name="timing" value="7pm-8pm">
+                    <label for="fitness-7pm-8pm">7:00 PM - 8:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="dance-9am-10am" name="timing" value="9am-10am">
+                    <label for="dance-9am-10am">9:00 AM - 10:00 AM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="dance-10am-11am" name="timing" value="10am-11am">
+                    <label for="dance-10am-11am">10:00 AM - 11:00 AM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="dance-5pm-6pm" name="timing" value="5pm-6pm">
+                    <label for="dance-5pm-6pm">5:00 PM - 6:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="dance-6pm-7pm" name="timing" value="6pm-7pm">
+                    <label for="dance-6pm-7pm">6:00 PM - 7:00 PM</label>
+                </div>
+            </div>
+            <div class="timing-group">
+                <p>Fitness Classes:</p>
+                <div class="timing-option">
+                    <input type="checkbox" id="fitness-6am-7am" name="timing" value="6am-7am">
+                    <label for="fitness-6am-7am">6:00 AM - 7:00 AM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="fitness-7am-8am" name="timing" value="7am-8am">
+                    <label for="fitness-7am-8am">7:00 AM - 8:00 AM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="fitness-2pm-3pm" name="timing" value="2pm-3pm">
+                    <label for="fitness-2pm-3pm">2:00 PM - 3:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="fitness-7pm-8pm" name="timing" value="7pm-8pm">
+                    <label for="fitness-7pm-8pm">7:00 PM - 8:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="fitness-8pm-9pm" name="timing" value="8pm-9pm">
+                    <label for="fitness-8pm-9pm">8:00 PM - 9:00 PM</label>
+                </div>
+            </div>
+            <div class="timing-group">
+                <p>Art Classes:</p>
+                <div class="timing-option">
+                    <input type="checkbox" id="art-11am-12pm" name="timing" value="11am-12pm">
+                    <label for="art-11am-12pm">11:00 AM - 12:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="art-12pm-1pm" name="timing" value="12pm-1pm">
+                    <label for="art-12pm-1pm">12:00 PM - 1:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="art-2pm-3pm" name="timing" value="2pm-3pm">
+                    <label for="art-2pm-3pm">2:00 PM - 3:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="art-3pm-4pm" name="timing" value="3pm-4pm">
+                    <label for="art-3pm-4pm">3:00 PM - 4:00 PM</label>
+                </div>
+            </div>
+            <div class="timing-group">
+                <p>Music Classes:</p>
+                <div class="timing-option">
+                    <input type="checkbox" id="music-11am-12pm" name="timing" value="11am-12pm">
+                    <label for="music-11am-12pm">11:00 AM - 12:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="music-12pm-1pm" name="timing" value="12pm-1pm">
+                    <label for="music-12pm-1pm">12:00 PM - 1:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="music-2pm-3pm" name="timing" value="2pm-3pm">
+                    <label for="music-2pm-3pm">2:00 PM - 3:00 PM</label>
+                </div>
+                <div class="timing-option">
+                    <input type="checkbox" id="music-3pm-4pm" name="timing" value="3pm-4pm">
+                    <label for="music-3pm-4pm">3:00 PM - 4:00 PM</label>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="total-amount" id="totalAmount"></div>
+        <div class="button-container">
+            <button id="payLaterButton">Pay Later</button>
+            <span class="or-text">OR</span>
+            <button id="proceedToPayButton">Proceed to Pay</button>
+        </div>
+        <div class="payment-note">Note: Payment can be made with cash during classes.</div>
+    </div>
+
+    <script>
+        // Function to calculate fees based on selected classes
+
+    // Function to calculate fees based on selected classes
+    function calculateTotalAmount() {
+    var selectedButtons = document.querySelectorAll('.class-button.selected');
+    var totalFees = 0;
+    selectedButtons.forEach(button => {
+        totalFees += parseInt(button.dataset.fee);
+    });
+    return totalFees.toFixed(2);
+}
+
+// Event listener for class button clicks
+document.querySelectorAll('.class-button').forEach(button => {
+    button.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        calculateFees();
+    });
+});
+
+// Function to calculate fees based on selected classes
+function calculateFees() {
+    var selectedButtons = document.querySelectorAll('.class-button.selected');
+    var discount = 0;
+    var totalFees = 0;
+
+    // Calculate total fees and check for discounts
+    selectedButtons.forEach(button => {
+        totalFees += parseInt(button.dataset.fee);
+    });
+
+    // Calculate discount based on the number of selected classes
+    if (selectedButtons.length === 4) {
+        discount = 20;
+    } else if (selectedButtons.length === 3) {
+        discount = 15;
+    } else if (selectedButtons.length === 2) {
+        discount = 10;
+    }
+
+    // Apply discount to total fees
+    var discountedAmount = (totalFees * discount) / 100;
+    var finalAmount = totalFees - discountedAmount;
+
+    // Update discount note
+    var discountNote = document.getElementById('discountNote');
+    if (discount > 0) {
+        discountNote.textContent = "You've received a " + discount + "% discount for selecting " + selectedButtons.length + " classes.";
+    } else {
+        discountNote.textContent = ""; // Clear discount note if no discount
+    }
+
+    // Update total amount
+    var totalAmountElement = document.getElementById('totalAmount');
+    totalAmountElement.textContent = "Total Amount: $" + finalAmount.toFixed(2);
+}
+    // Event listener for Pay Later button
+    document.getElementById('payLaterButton').addEventListener('click', function() {
+        if (validateForm()) {
+            // Gather form data
+            var formData = gatherFormData();
+
+            // Send email with form data
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/scripts/send_email.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+                if (xhr.status == 200) {
+                    alert('Registered successfully.');
+                } else {
+                    alert('Failed to Register');
+                }
+            };
+            xhr.send(JSON.stringify(formData));
+
+        }
+    });
+
+    function gatherFormData() {
+        var selectedTimings = [];
+        document.querySelectorAll('input[name="timing"]:checked').forEach(function(checkbox) {
+            selectedTimings.push(checkbox.value);
+        });
+
+        // Gather other form data
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+
+        return {
+            timings: selectedTimings,
+            name: name,
+            email: email,
+            phone: phone
+        };
+    }
+
+
+    </script>
+</body>
+</html>
